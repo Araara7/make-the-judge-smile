@@ -24,6 +24,10 @@ def main() -> None:
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(LINE)
+    # Read back and verify the file holds exactly the line, one run's
+    # output matching the next byte for byte.
+    with open("/output/entry.txt", "r", encoding="utf-8") as f:
+        assert f.read() == LINE, "entry file does not match the line"
 
 
 if __name__ == "__main__":
